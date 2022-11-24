@@ -1,4 +1,8 @@
-import { authServiceMock, registerDtoStub, loginDtoStub } from './../__mocks__/auth.mock';
+import {
+  authServiceMock,
+  registerDtoStub,
+  loginDtoStub,
+} from './../__mocks__/auth.mock';
 import { JwtService } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthController } from './auth.controller';
@@ -6,8 +10,6 @@ import { AuthService } from './auth.service';
 import { createMock } from '@golevelup/ts-jest';
 import { UsersService } from '../users/users.service';
 import { userServiceMock } from '../__mocks__/user.mock';
-import { plainToInstance } from 'class-transformer';
-import { validate, ValidationError } from 'class-validator';
 import {
   InternalServerErrorException,
   BadRequestException,
@@ -19,7 +21,6 @@ describe('AuthController', () => {
   let controller: AuthController;
   let authService: AuthService;
   let usersService: UsersService;
-  let jwtService: JwtService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -39,7 +40,6 @@ describe('AuthController', () => {
 
     controller = module.get<AuthController>(AuthController);
     authService = module.get(AuthService);
-    jwtService = module.get(JwtService);
     usersService = module.get(UsersService);
   });
 
